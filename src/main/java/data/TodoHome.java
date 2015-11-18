@@ -34,7 +34,7 @@ public class TodoHome implements Serializable {
 
 	@PersistenceContext(type=PersistenceContextType.EXTENDED) EntityManager em;
 
-	private static final String LIST_PAGE = "TaskList";
+	private static final String LIST_PAGE = "TodoList";
 	private static final String FORCE_REDIRECT = "?faces-redirect=true";
 
 	@Inject Conversation conv;
