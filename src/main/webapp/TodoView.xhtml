@@ -20,40 +20,20 @@
 
 	<ui:define name="body">
 			<p:panelGrid columns="2" title="TodoView">
-				FirstName:
-				<h:outputText value="#{todoHome.instance.firstName}"/>
+				Name:
+				<h:outputText value="#{todoHome.instance.name}"/>
 
-				LastName:
-				<h:outputText value="#{todoHome.instance.lastName}"/>
+				Priority:
+				<h:outputText value="#{todoHome.instance.priority}"/>
 
-				Email:
-				<h:outputText value="#{todoHome.instance.email}"/>
+				Status:
+				<h:outputText value="#{todoHome.instance.status}"/>
 
-				Phone:
+				Created:
 				<ui:fragment>
-				Home: <h:outputText value="#{todoHome.instance.homePhone};"/>
-				Mobile: <h:outputText value="#{todoHome.instance.cellPhone}"/>
+				<h:outputText value="#{todoHome.instance.creationDate};"/>
 				</ui:fragment>
 
-				Postion:
-				<h:outputText value="#{todoHome.instance.position}"/>
-
-				Expiry:
-				<h:outputText value="#{todoHome.instance.expiryDate}"/>
-
-				Address:
-				<h:outputText value="#{todoHome.instance.address}"/>
-
-				City:
-				<h:outputText value="#{todoHome.instance.city}"/>
-
-				Province,Country,PostCode:
-				<ui:fragment>
-				<h:outputText value="#{todoHome.instance.province}"/>#{' '}
-				<h:outputText value="#{todoHome.instance.country}"/>#{' '}
-				<h:outputText value="#{todoHome.instance.postCode}"/>
-				</ui:fragment>
-				
 			</p:panelGrid>
 
 	<h:form>
