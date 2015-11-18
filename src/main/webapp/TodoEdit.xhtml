@@ -1,0 +1,95 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+<ui:define name="pageTitle">Todo Edit</ui:define>
+<h:head>
+<f:metadata>
+    <f:event type="preRenderView" rendered="#{!empty request.getParameter('todoId')}" listener="#{todoHome.wire(request.getParameter('todoId'))}"/>
+    <f:event type="preRenderView" rendered="#{ empty request.getParameter('todoId')}" listener="#{todoHome.wire()}"/>
+</f:metadata>
+</h:head>
+
+<ui:define name="body">
+
+	<h:form id="todoForm">
+	<p:panel>
+		<f:facet name="header">Todo Edit</f:facet>
+		<h:panelGrid columns='3'>
+		
+		Id:
+		<h:inputText id="idTF" value="#{todoHome.instance.id}"/>
+		<h:message id='idMessage' for='firstnameTF'/>
+		
+		First Name:
+		<h:inputText id="firstnameTF" value="#{todoHome.instance.firstName}" required='true'/>
+		<h:message id='firstnameMessage' for='firstnameTF'/>
+		
+		Last Name:
+		<h:inputText id="lastnameTF" value="#{todoHome.instance.lastName}" required='true'/>
+		<h:message id='lastnameMessage' for='lastnameTF'/>
+	
+		Email:
+		<h:inputText id="emailTF" value="#{todoHome.instance.email}" required='true'>
+			<f:validateRegex pattern="\w+([._]\w+)?@\w+\.\w+"/>
+			<f:ajax event="blur" render='emailMessage'/>
+		</h:inputText>
+		<h:message id='emailMessage' for='emailTF'/>
+
+		Phones:
+		<ui:fragment>
+			Home: <h:inputText id="homePhoneTF" value="#{todoHome.instance.homePhone}"/>
+			Mobile: <h:inputText id="cellPhoneTF" value="#{todoHome.instance.cellPhone}"/>
+		</ui:fragment>
+		<h:message id='homePhoneMessage' for='homePhoneTF'/>
+		
+		Club Executive Position if any:
+		<h:inputText id="positionTF" value="#{todoHome.instance.position}"/>
+		<h:message id='positionMessage' for='positionTF'/>
+		
+		Address:
+		<h:inputText id="addressTF" value="#{todoHome.instance.address}" required='true'/>
+		<h:message id='addressMessage' for='addressTF'/>
+
+		City:
+		<h:inputText id="cityTF" value="#{todoHome.instance.city}" required='true'/>
+		<h:message id='cityMessage' for='cityTF'/>
+		
+		Province,Country,PostCode:
+		<ui:fragment>
+			<h:inputText id="provinceTF" value="#{todoHome.instance.province}"/>
+			<p:selectOneMenu id="country" value="#{todoHome.instance.country}" style="width:150px">
+                <!-- <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />  -->
+                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                <f:selectItem itemLabel="Canada" itemValue="CA" />
+                <f:selectItem itemLabel="U.S.A." itemValue="US" />
+            </p:selectOneMenu>
+			<h:inputText id="postcodeTF" value="#{todoHome.instance.postCode}" 
+				validator="#{todoHome.validatePostCode}" required='true'/>
+		</ui:fragment>
+		<ui:fragment>
+			<h:message id='provinceMessage' for='provinceTF'/>
+			<h:message id='postcodeMessage' for='postcodeTF'/>
+		</ui:fragment>
+		
+		<p:outputLabel for="expdt" value="Expiry:" />
+        <p:calendar id="expdt" value="#{todoHome.instance.expiryDate}" pattern="yyyy-MM-dd" showOn="button" />
+			
+		</h:panelGrid>
+	</p:panel>
+
+	<p:commandButton value="Save" action="#{todoHome.update}" ajax='false'/>
+	</h:form>
+	<h:form>
+	<!-- In their own form to avoid hanging on validation -->
+	<p:commandButton value="Delete (no confirmation!)" action="#{todoHome.remove}" ajax='false'/>
+	<p:commandButton value="Cancel" action="#{todoHome.cancel}" ajax='false'/>
+	</h:form>
+	
+</ui:define>
+</ui:composition>

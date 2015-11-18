@@ -1,0 +1,6 @@
+= TodoService - WebView and REST Service for TODO
+
+TODO: Someday this will be a nice working TODO model.
+
+Uses TodoModel for its JPA Data.
+

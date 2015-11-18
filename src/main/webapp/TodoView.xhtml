@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+ *** Todo Details page
+ -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      template="/template/template.xhtml">
+
+<ui:define name="pageTitle">Todo</ui:define>
+<h:head>
+<f:metadata>
+    <f:event type="preRenderView" rendered="#{!empty request.getParameter('todoId')}" listener="#{todoHome.wire(request.getParameter('todoId'))}"/>
+</f:metadata>
+</h:head>
+
+	<ui:define name="pageHeader">Todo View</ui:define>
+
+	<ui:define name="body">
+			<p:panelGrid columns="2" title="TodoView">
+				FirstName:
+				<h:outputText value="#{todoHome.instance.firstName}"/>
+
+				LastName:
+				<h:outputText value="#{todoHome.instance.lastName}"/>
+
+				Email:
+				<h:outputText value="#{todoHome.instance.email}"/>
+
+				Phone:
+				<ui:fragment>
+				Home: <h:outputText value="#{todoHome.instance.homePhone};"/>
+				Mobile: <h:outputText value="#{todoHome.instance.cellPhone}"/>
+				</ui:fragment>
+
+				Postion:
+				<h:outputText value="#{todoHome.instance.position}"/>
+
+				Expiry:
+				<h:outputText value="#{todoHome.instance.expiryDate}"/>
+
+				Address:
+				<h:outputText value="#{todoHome.instance.address}"/>
+
+				City:
+				<h:outputText value="#{todoHome.instance.city}"/>
+
+				Province,Country,PostCode:
+				<ui:fragment>
+				<h:outputText value="#{todoHome.instance.province}"/>#{' '}
+				<h:outputText value="#{todoHome.instance.country}"/>#{' '}
+				<h:outputText value="#{todoHome.instance.postCode}"/>
+				</ui:fragment>
+				
+			</p:panelGrid>
+
+	<h:form>
+	<p:commandButton value="Done" action="#{todoHome.done}"/>
+	</h:form>
+
+	</ui:define>
+			
+</ui:composition>
+
