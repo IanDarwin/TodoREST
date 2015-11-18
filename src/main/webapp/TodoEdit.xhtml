@@ -24,62 +24,26 @@
 		
 		Id:
 		<h:inputText id="idTF" value="#{todoHome.instance.id}"/>
-		<h:message id='idMessage' for='firstnameTF'/>
+		<h:message id='idMessage' for='idTF'/>
 		
-		First Name:
-		<h:inputText id="firstnameTF" value="#{todoHome.instance.firstName}" required='true'/>
-		<h:message id='firstnameMessage' for='firstnameTF'/>
+		Name:
+		<h:inputText id="nameTF" value="#{todoHome.instance.name}" required='true'/>
+		<h:message id='nameMessage' for='nameTF'/>
 		
-		Last Name:
-		<h:inputText id="lastnameTF" value="#{todoHome.instance.lastName}" required='true'/>
-		<h:message id='lastnameMessage' for='lastnameTF'/>
-	
-		Email:
-		<h:inputText id="emailTF" value="#{todoHome.instance.email}" required='true'>
-			<f:validateRegex pattern="\w+([._]\w+)?@\w+\.\w+"/>
-			<f:ajax event="blur" render='emailMessage'/>
-		</h:inputText>
-		<h:message id='emailMessage' for='emailTF'/>
+		Status:
+		<h:selectOneMenu value="#{todoHome.instance.status}">
+			<f:selectItems value="#{factories.statuses}"
+						 var="i" label="#{i}"/>
+		</h:selectOneMenu>
+		<h:outputText/>
 
-		Phones:
-		<ui:fragment>
-			Home: <h:inputText id="homePhoneTF" value="#{todoHome.instance.homePhone}"/>
-			Mobile: <h:inputText id="cellPhoneTF" value="#{todoHome.instance.cellPhone}"/>
-		</ui:fragment>
-		<h:message id='homePhoneMessage' for='homePhoneTF'/>
-		
-		Club Executive Position if any:
-		<h:inputText id="positionTF" value="#{todoHome.instance.position}"/>
-		<h:message id='positionMessage' for='positionTF'/>
-		
-		Address:
-		<h:inputText id="addressTF" value="#{todoHome.instance.address}" required='true'/>
-		<h:message id='addressMessage' for='addressTF'/>
+		Priority:
+		<h:selectOneMenu value="#{todoHome.instance.priority}">
+			<f:selectItems value="#{factories.priorities}"
+						 var="i" label="#{i}"/>
+		</h:selectOneMenu>
+		<h:outputText/>
 
-		City:
-		<h:inputText id="cityTF" value="#{todoHome.instance.city}" required='true'/>
-		<h:message id='cityMessage' for='cityTF'/>
-		
-		Province,Country,PostCode:
-		<ui:fragment>
-			<h:inputText id="provinceTF" value="#{todoHome.instance.province}"/>
-			<p:selectOneMenu id="country" value="#{todoHome.instance.country}" style="width:150px">
-                <!-- <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />  -->
-                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
-                <f:selectItem itemLabel="Canada" itemValue="CA" />
-                <f:selectItem itemLabel="U.S.A." itemValue="US" />
-            </p:selectOneMenu>
-			<h:inputText id="postcodeTF" value="#{todoHome.instance.postCode}" 
-				validator="#{todoHome.validatePostCode}" required='true'/>
-		</ui:fragment>
-		<ui:fragment>
-			<h:message id='provinceMessage' for='provinceTF'/>
-			<h:message id='postcodeMessage' for='postcodeTF'/>
-		</ui:fragment>
-		
-		<p:outputLabel for="expdt" value="Expiry:" />
-        <p:calendar id="expdt" value="#{todoHome.instance.expiryDate}" pattern="yyyy-MM-dd" showOn="button" />
-			
 		</h:panelGrid>
 	</p:panel>
 
