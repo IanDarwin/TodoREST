@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Club List - Login Failure</title>
+	<title>Todo List - Login Failure</title>
 </head>
 
 <body>
