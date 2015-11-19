@@ -33,7 +33,7 @@ public class PersistenceTest {
 	}
 
 	/** Live JPA (fake database): save a Todo Task, then
-	 * asser that we find it in the list from JPA
+	 * assert that we find it in the list from JPA
 	 */
 	@Test
 	public void testLoadStore() {
