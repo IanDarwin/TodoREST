@@ -23,11 +23,11 @@
 		<h:panelGrid columns='3'>
 		
 		Id:
-		<h:inputText id="idTF" value="#{todoHome.instance.id}"/>
+		<h:outputText id="idTF" value="#{todoHome.instance.id}"/>
 		<h:message id='idMessage' for='idTF'/>
 		
 		Name:
-		<h:inputText id="nameTF" value="#{todoHome.instance.name}" required='true'/>
+		<h:inputText id="nameTF" value="#{todoHome.instance.name}" required='true' size='70'/>
 		<h:message id='nameMessage' for='nameTF'/>
 		
 		Status:
