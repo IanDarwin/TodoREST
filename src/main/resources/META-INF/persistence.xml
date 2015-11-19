@@ -7,6 +7,8 @@
 
 	<persistence-unit name="todolist" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/TodoDataSource</jta-data-source>
+
 		<class>com.darwinsys.todo.model.Context</class>
 		<class>com.darwinsys.todo.model.Date</class>
 		<class>com.darwinsys.todo.model.Project</class>
@@ -14,18 +16,18 @@
 
 		<properties>
 			<!-- Properties for type of database -->
-			<property name="eclipselink.target-database"
-				value="org.eclipse.persistence.platform.database.HSQLPlatform"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 
 			<!-- A local database, for running during development -->
-			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:todolist" />
-			<property name="javax.persistence.jdbc.user" value="student" />
-			<property name="javax.persistence.jdbc.password" value="student" />
+			<!--
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql:todo" />
+			<property name="javax.persistence.jdbc.user" value="tewdew" />
+			<property name="javax.persistence.jdbc.password" value="upDoEr" />
+			-->
 
 			<!-- Properties for Hibernate provider -->
-			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>
 		</properties>
