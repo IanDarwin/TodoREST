@@ -1,5 +1,7 @@
 package data;
 
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -21,8 +23,9 @@ import org.apache.deltaspike.data.api.Repository;
 @Named("todoList") @Default
 @SessionScoped
 @Repository 
-public interface TodoList extends EntityRepository<Task, Long> {
+public interface TodoList extends Serializable, EntityRepository<Task, Long> {
 
-	@Query(value="select t from Task t order by t.creationDate desc")
+	// The ordering of Priority is 0=Top..3=Lowest, so sort by prio asc is correct here
+	@Query(value="select t from Task t order by t.priority asc, t.name asc")
 	List<Task> findAll();
 }
