@@ -29,11 +29,20 @@
 		Name:
 		<h:inputText id="nameTF" value="#{todoHome.instance.name}" required='true' size='70'/>
 		<h:message id='nameMessage' for='nameTF'/>
-		
+
 		Status:
 		<h:selectOneMenu value="#{todoHome.instance.status}">
 			<f:selectItems value="#{factories.statuses}"
 						 var="i" label="#{i}"/>
+		</h:selectOneMenu>
+		<h:outputText/>
+
+		Context:
+		<h:selectOneMenu value="#{todoHome.instance.context}"
+			converter="#{contextConverter}">
+			<f:selectItem itemLabel="Select One" itemValue="" />
+			<f:selectItems value="#{contextList.findAll()}"
+				var="i" itemLabel="#{i}" itemValue="#{i}"/>
 		</h:selectOneMenu>
 		<h:outputText/>
 
