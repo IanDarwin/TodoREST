@@ -43,7 +43,14 @@
 			</p:panelGrid>
 
 	<h:form>
+
 	<p:commandButton value="Done" action="#{todoHome.done}"/>
+
+	<h:outputLink value="TodoEdit.web">
+		Edit
+		<f:param name="todoId" value="#{todo.id}"/>
+	</h:outputLink>
+
 	</h:form>
 
 	</ui:define>
