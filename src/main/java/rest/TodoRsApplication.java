@@ -5,8 +5,6 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import com.google.common.collect.Sets;
-
 public class TodoRsApplication extends Application {
 
 	public TodoRsApplication() {
