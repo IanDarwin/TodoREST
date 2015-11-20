@@ -26,6 +26,7 @@ public class TodoRsService {
 	public String sayHello() {
 		return "<p><b>Hello!</b></p>";
 	}
+
 	@GET
 	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
