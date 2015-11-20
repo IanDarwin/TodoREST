@@ -1,0 +1,2 @@
+(cd ../TodoModel; mvn install)
+rm -r target
