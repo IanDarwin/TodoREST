@@ -52,6 +52,11 @@
 						 var="i" label="#{i}"/>
 		</h:selectOneMenu>
 		<h:outputText/>
+		
+		Details:
+		<h:inputTextarea id="descrTF" value="#{todoHome.instance.description}"
+			rows="5" cols="70"/>
+		<h:message id='descrMessage' for='descrTF'/>
 
 		</h:panelGrid>
 	</p:panel>
