@@ -31,19 +31,24 @@
 			<h:outputText value="#{todo.id}"/>
 		</p:column>
 
-		<p:column width="10%">
+		<p:column width="5%">
 			<f:facet name="header">Priority</f:facet>
 			<h:outputText value="#{todo.priority}"/>
-		</p:column>
-
-		<p:column width="10%">
-			<f:facet name="header">Status</f:facet>
-			<h:outputText value="#{todo.status}"/>
 		</p:column>
 
 		<p:column>
 			<f:facet name="header">Name</f:facet>
 			<h:outputText value="#{todo.name}"/>
+		</p:column>
+		
+		<p:column width="10%">
+			<f:facet name="header">Context</f:facet>
+			<h:outputText value="#{todo.context}"/>
+		</p:column>
+
+		<p:column width="5%">
+			<f:facet name="header">Status</f:facet>
+			<h:outputText value="#{todo.status}"/>
 		</p:column>
 
 		<p:column style="width: 10%">
