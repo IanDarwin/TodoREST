@@ -20,17 +20,6 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.web</url-pattern>
 	</servlet-mapping>
-	
-	<!-- JAX-RS Servlet -->
-	<servlet>
-	    <servlet-name>rest.TodoRsService</servlet-name>
-	    <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-	    <servlet-name>rest.TodoRsService</servlet-name>
-	    <url-pattern>/rs/*</url-pattern>
-	</servlet-mapping>
 
 	<!-- Security roles used by this web application -->
 	<security-role>
