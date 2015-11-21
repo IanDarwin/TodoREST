@@ -142,7 +142,9 @@ public class TodoHome implements Serializable {
 
 	@PreDestroy
 	public void bfn() {
-		conv.end();
+		if (!conv.isTransient()) {
+			conv.end();
+		}
 		System.out.println("TaskHome.bfn()");
 	}
 
