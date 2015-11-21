@@ -26,6 +26,6 @@ import org.apache.deltaspike.data.api.Repository;
 public interface TodoList extends Serializable, EntityRepository<Task, Long> {
 
 	// The ordering of Priority is 0=Top..3=Lowest, so sort by prio asc is correct here
-	@Query(value="select t from Task t order by t.priority asc, t.name asc")
+	@Query(value="select t from Task t where t.status < 3 order by t.priority asc, t.name asc")
 	List<Task> findAll();
 }
