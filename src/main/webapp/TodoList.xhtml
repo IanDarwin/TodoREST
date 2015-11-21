@@ -58,9 +58,7 @@
 		<p:column style="width: 10%">
 			<f:facet name="header">Operations</f:facet>
 			<p:splitButton value="Complete" actionListener="#{todo.toggleDone}" icon="ui-icon-check">
-			    <p:menuitem value="Details" url="TodoEdit.web" icon="ui-icon-edit">
-					<f:param name="todoId" value="#{todo.id}"/>
-				</p:menuitem>
+			    <p:menuitem value="Details" url="TodoEdit.web?todoId=#{todo.id}" icon="ui-icon-edit"/>
 			    <p:menuitem value="Delete" ajax="false" actionListener="#{todoHome.remove(todo)}" icon="ui-icon-close" />
 			</p:splitButton>
 		</p:column>
