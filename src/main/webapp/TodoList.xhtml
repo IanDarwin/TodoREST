@@ -13,6 +13,10 @@
 	<p:panel>
 	<f:facet name="header">Here's looking at your Todos  - #{todoList.findAll().size()} of them.</f:facet>
 
+	<h:form>
+
+	<p:growl id="msgs" />
+
 	<!-- Print the table, or, an error -->
 	<h:outputText
 		value="Arrr, Billy! I can't find any tasks. Did we add any yet??"
@@ -53,15 +57,25 @@
 
 		<p:column style="width: 10%">
 			<f:facet name="header">Operations</f:facet>
-			<h:selectBooleanCheckbox value="#{notwrittenyet.setComplete}" /> Done
-			<h:selectBooleanCheckbox value="#{notwrittenyet.delete}" /> Delete
+			Done
+			<p:selectBooleanButton value="#{todo.complete}" 
+				onLabel="Yes" offLabel="No"
+				onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:40px">
+				<!-- XXX This should have 'update="msgs"' but that breaks -->
+				<p:ajax listener="#{notwrittenyet.toggleComplete(todo.id)}" />
+			</p:selectBooleanButton>
+			#{' '}
+			<h:outputLink value="#{notwrittenyet.delete}">
+				Delete
+				<f:param name="todoId" value="#{todo.id}"/>
+			</h:outputLink>
+			#{' '}
 			<h:outputLink value="TodoEdit.web">
 				More...
 				<f:param name="todoId" value="#{todo.id}"/>
 			</h:outputLink>
 		</p:column>
 	</p:dataTable>
-	<h:form>
 	<p:button outcome="TodoEdit.web" value="Add"/>
 	</h:form>
 	</p:panel>
