@@ -55,7 +55,7 @@
 			<h:outputText value="#{todo.status}"/>
 		</p:column>
 
-		<p:column style="width: 10%">
+		<p:column style="width: 15%">
 			<f:facet name="header">Operations</f:facet>
 			<p:splitButton value="Complete" actionListener="#{todo.toggleDone}" icon="ui-icon-check">
 			    <p:menuitem value="Details" url="TodoEdit.web?todoId=#{todo.id}" icon="ui-icon-edit"/>
