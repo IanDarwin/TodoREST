@@ -12,3 +12,9 @@ You need to copy config-sample.properties to config.properties, and edit it.
 
 Assuming you're using Wildfly 8 or 9 and PostGres 9,, just set up the datasource and do `mvn wildfly:deploy`
 
+
+Things do do.
+
+Better UI!
+
+Move away from container-managed security so it can more easily become multi-user.
