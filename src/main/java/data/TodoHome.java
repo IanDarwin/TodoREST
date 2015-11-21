@@ -146,4 +146,15 @@ public class TodoHome implements Serializable {
 		System.out.println("TaskHome.bfn()");
 	}
 
+	/**
+	 * A Remove method that is effectively stateless; it is called
+	 * with a detached entity so we need to reconnect it first.
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remove(Task victim) {
+		long id = victim.getId();
+		System.out.println("Removing Todo Task #" + id);
+		em.remove(em.find(Task.class, id));
+	}
+
 }
