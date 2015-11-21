@@ -156,7 +156,7 @@ public class TodoHome implements Serializable {
 	public void remove(Task victim) {
 		long id = victim.getId();
 		System.out.println("Removing Todo Task #" + id);
-		em.remove(em.find(Task.class, id));
+		em.remove(em.getReference(Task.class, id));
 	}
 
 }
