@@ -46,7 +46,7 @@
 		<!-- Data model -->
 		<dependency>
 			<groupId>com.darwinsys</groupId>
-			<artifactId>todo-model</artifactId>
+			<artifactId>todo-datamodel</artifactId>
 			<version>1.0.2</version>
 		</dependency>
 	
