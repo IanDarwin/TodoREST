@@ -15,8 +15,6 @@
 
 	<h:form id="form">
 
-	<p>Hint: <h:outputText value="Break large tasks into smaller ones."/></p>
-
 	<h:messages id="msgs"/>
 
 	<!-- Print the table, or, an error -->
@@ -28,31 +26,28 @@
 	<p:dataTable border='1' 
 		rendered="#{!empty todoList.findAll()}"
 		var="todo" value="#{todoList.findAll()}" 
-		paginator="true" rows="#{pfTableConstants.rows}"
-		paginatorTemplate="#{pfTableConstants.paginatorTemplate}"
-		rowsPerPageTemplate="#{pfTableConstants.rowsPerPageTemplate}"
 		>
-		<p:column width="5%">
+		<p:column width="5%" sortBy="#{todo.id}">
 			<f:facet name="header">Id</f:facet>
 			<h:outputText value="#{todo.id}"/>
 		</p:column>
 
-		<p:column width="5%">
+		<p:column width="5%" sortBy="#{todo.priority.ordinal()}">
 			<f:facet name="header">Priority</f:facet>
 			<h:outputText value="#{todo.priority}"/>
 		</p:column>
 
-		<p:column>
+		<p:column sortBy="#{todo.name}">
 			<f:facet name="header">Name</f:facet>
 			<h:outputText value="#{todo.name}"/>
 		</p:column>
 		
-		<p:column width="10%">
+		<p:column width="10%" sortBy="#{todo.context.name}">
 			<f:facet name="header">Context</f:facet>
 			<h:outputText value="#{todo.context}"/>
 		</p:column>
 
-		<p:column width="5%">
+		<p:column width="5%" sortBy="#{todo.status.ordinal()}">
 			<f:facet name="header">Status</f:facet>
 			<h:outputText value="#{todo.status}"/>
 		</p:column>
