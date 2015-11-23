@@ -3,16 +3,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	template="template/template.xhtml">
+	>
 
-<h:head>
-</h:head>
-<ui:define name="title">Export</ui:define>
-<ui:define name="body">
+<ui:repeat var='t' value='#{todoList.findAll()}'>
+	<h:outputText value="#{t}"/><br/>
+</ui:repeat>
 
-<h:outputText rendered="false">Error: This server's JSF mapping is not working.</h:outputText>
-
-<p>Export function not written yet, sorry.</p>
-
-</ui:define>
 </ui:composition>
