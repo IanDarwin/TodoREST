@@ -11,6 +11,7 @@
 
 		<class>com.darwinsys.todo.model.Context</class>
 		<class>com.darwinsys.todo.model.Date</class>
+		<class>com.darwinsys.todo.model.Hint</class>
 		<class>com.darwinsys.todo.model.Project</class>
 		<class>com.darwinsys.todo.model.Task</class>
 
