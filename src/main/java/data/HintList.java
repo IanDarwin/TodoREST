@@ -1,33 +1,45 @@
 package data;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
+import java.util.Random;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
+import javax.persistence.*;
 
 import com.darwinsys.todo.model.Hint;
 
-import org.apache.deltaspike.data.api.EntityRepository;
-import org.apache.deltaspike.data.api.Query;
-import org.apache.deltaspike.data.api.Repository;
-
 /**
  * This is a basic DAO-like interface for use by JSF or EJB.
- * Methods are implemented for us by Apache DeltaSpike Data.
- * The methods in the inherited interface suffice for many apps!
+ * There's one method and we need EntityManager so forget DeltaSpike Data.
  * @author Ian Darwin
  */
 @Named("hintList") @Default
 @SessionScoped
-@Repository 
-public interface HintList extends Serializable, EntityRepository<Hint, Long> {
+public class HintList implements Serializable {
 
-	List<Hint> findAll();
+	@PersistenceContext
+	EntityManager em;
 
-	@Query(value="select h from Hint h order by random() limit 1")
-	Hint findRandom();
+	public Hint getRandom() {
+		int count =
+			em.createQuery("select count(h) from Hint h")
+			.getFirstResult();
+
+		System.out.printf("Found %d Hint(s)%n", count);
+
+		if (count == 0) {
+			System.err.println("No hints in database");
+			Hint h = new Hint();
+			h.setHint("A stitch in time saves nine");
+			return h;
+		}
+		int index = new Random().nextInt((int)count) + 1; // JPA starts at 1
+
+		return em.createQuery("select h from Hint h", Hint.class)
+			.setFirstResult(index)
+			.setMaxResults(1)
+			.getSingleResult();
+	}
 }
-

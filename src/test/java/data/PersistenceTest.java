@@ -1,5 +1,6 @@
 package data;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -9,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.darwinsys.todo.model.Hint;
 import com.darwinsys.todo.model.Task;
 
 import org.junit.Before;
@@ -53,5 +55,17 @@ public class PersistenceTest {
 			}
 		}
 		fail("Did not retrieve datum that we saved!");
+	}
+
+	/**
+	 * Since the HintList only uses JPA directly we can test it here.
+	 */
+	@Test
+	public void testHintList() {
+		HintList hintList = new HintList();
+		hintList.em = em;
+
+		Hint h = hintList.getRandom();
+		assertNotNull(h);
 	}
 }

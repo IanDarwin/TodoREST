@@ -9,6 +9,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/TodoDataSource</jta-data-source>
 
+		<!-- If you add a class here add it in src/test/resources.. too! -->
 		<class>com.darwinsys.todo.model.Context</class>
 		<class>com.darwinsys.todo.model.Date</class>
 		<class>com.darwinsys.todo.model.Hint</class>
