@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+<ui:define name="pageTitle">Todo Hints List</ui:define>
+<ui:define name="body">
+
+	<p:panel>
+	<h:form id="mainForm">
+	<!-- Display the main part of the whole page. -->
+	<p:dataTable border='1' 
+		rendered="#{!empty hintList.findAll()}"
+		var="hint" value="#{hintList.findAll()}" 
+		>
+		<p:column width="5%" sortBy="#{hint.id}">
+			<f:facet name="header">Id</f:facet>
+			<h:outputText value="#{hint.id}"/>
+		</p:column>
+
+		<p:column sortBy="#{hint.hint}">
+			<f:facet name="header">Hint</f:facet>
+			<h:outputText value="#{hint.hint}"/>
+		</p:column>
+		
+		<p:column width="10%" sortBy="#{hint.author}">
+			<f:facet name="header">Author</f:facet>
+			<h:outputText value="#{hint.author}"/>
+		</p:column>
+
+
+	</p:dataTable>
+	<p:button outcome="HintEdit.web" value="Add"/>
+	</h:form>
+	</p:panel>
+</ui:define>
+</ui:composition>

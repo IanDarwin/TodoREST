@@ -1,6 +1,7 @@
 package data;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Random;
 
 import javax.enterprise.context.SessionScoped;
@@ -22,20 +23,34 @@ public class HintList implements Serializable {
 	@PersistenceContext
 	EntityManager em;
 
-	public Hint getRandom() {
-		int count =
-			em.createQuery("select count(h) from Hint h")
-			.getFirstResult();
+	private Random r = new Random();
 
-		System.out.printf("Found %d Hint(s)%n", count);
+	/**
+	 * Design of this is from all DeltaSpike Data listers.
+	 */
+	public List<Hint> findAll() {
+		return em.createQuery("from Hint", Hint.class).getResultList();
+	}
+
+	/**
+	 * Meant to be useful on Todo pages: print one randomly-chosen Hint.
+	 */
+	public Hint getRandom() {
+		long count =
+			em.createQuery("select count(h) from Hint h", Long.class)
+			.getSingleResult();
 
 		if (count == 0) {
 			System.err.println("No hints in database");
 			Hint h = new Hint();
 			h.setHint("A stitch in time saves nine");
 			return h;
+		} else {
+			System.out.printf("Found %d Hint(s)%n", count);
 		}
-		int index = new Random().nextInt((int)count) + 1; // JPA starts at 1
+		int index = r.nextInt((int)count); // JPA starts at 1
+
+		System.out.printf("Index = %d%n", index);
 
 		return em.createQuery("select h from Hint h", Hint.class)
 			.setFirstResult(index)
