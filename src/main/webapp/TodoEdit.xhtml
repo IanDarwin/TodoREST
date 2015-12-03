@@ -65,7 +65,14 @@
 	</h:form>
 	<h:form>
 	<!-- In their own form to avoid hanging on validation -->
-	<p:commandButton value="Delete (no confirmation!)" action="#{todoHome.remove}" ajax='false'/>
+	<p:commandButton value="Delete" action="#{todoHome.remove}">
+        <p:confirm header="Confirm Deletion" message="Really delete?" icon="ui-icon-alert" />
+    </p:commandButton>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+	
 	<p:commandButton value="Cancel" action="#{todoHome.cancel}" ajax='false'/>
 	</h:form>
 	
