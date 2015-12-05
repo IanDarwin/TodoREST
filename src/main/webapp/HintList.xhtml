@@ -13,21 +13,21 @@
 	<!-- Display the main part of the whole page. -->
 	<p:dataTable border='1' 
 		rendered="#{!empty hintList.findAll()}"
-		var="hint" value="#{hintList.findAll()}" 
+		var="_hint" value="#{hintList.findAll()}" 
 		>
-		<p:column width="5%" sortBy="#{hint.id}">
+		<p:column width="5%" sortBy="#{_hint.id}">
 			<f:facet name="header">Id</f:facet>
-			<h:outputText value="#{hint.id}"/>
+			<h:outputText value="#{_hint.id}"/>
 		</p:column>
 
-		<p:column sortBy="#{hint.hint}">
+		<p:column sortBy="#{_hint.hint}">
 			<f:facet name="header">Hint</f:facet>
-			<h:outputText value="#{hint.hint}"/>
+			<h:outputText value="#{_hint.hint}"/>
 		</p:column>
 		
-		<p:column width="10%" sortBy="#{hint.author}">
+		<p:column width="10%" sortBy="#{_hint.author}">
 			<f:facet name="header">Author</f:facet>
-			<h:outputText value="#{hint.author}"/>
+			<h:outputText value="#{_hint.author}"/>
 		</p:column>
 
 
