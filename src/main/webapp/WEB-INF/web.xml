@@ -39,7 +39,8 @@
 		<display-name>Todo List</display-name>
 		<web-resource-collection>
 			<web-resource-name>Todo List</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>*.web</url-pattern>
+			<url-pattern>*.xhtml</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>club_exec</role-name>
