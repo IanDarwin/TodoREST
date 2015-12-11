@@ -26,9 +26,11 @@ public class HintList implements Serializable {
 	private Random r = new Random();
 
 	/**
-	 * Design of this is from all DeltaSpike Data listers.
+	 * Interface of this is based on DeltaSpike Data listers.
+	 * Implementation is trivial JPA call.
 	 */
 	public List<Hint> findAll() {
+		System.out.println("HintList.findAll()");
 		return em.createQuery("from Hint", Hint.class).getResultList();
 	}
 

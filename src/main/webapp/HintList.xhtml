@@ -8,25 +8,22 @@
 <ui:define name="pageTitle">Todo Hints List</ui:define>
 <ui:define name="body">
 
-	<p:panel>
+<p:panel>
 	<h:form id="mainForm">
 	<!-- Display the main part of the whole page. -->
-	<p:dataTable border='1' 
-		rendered="#{!empty hintList.findAll()}"
-		var="_hint" value="#{hintList.findAll()}" 
-		>
-		<p:column width="5%" sortBy="#{_hint.id}">
-			<f:facet name="header">Id</f:facet>
+    <p:dataTable var="_hint" value="#{hintList.findAll()}" style="margin-bottom:40px">
+        <f:facet name="header">
+            Single Column Sort
+        </f:facet>
+		<p:column headerText="Id" width="5%" sortBy="#{_hint.id}">
 			<h:outputText value="#{_hint.id}"/>
 		</p:column>
 
-		<p:column sortBy="#{_hint.hint}">
-			<f:facet name="header">Hint</f:facet>
+		<p:column headerText="Hint" sortBy="#{_hint.hint}">
 			<h:outputText value="#{_hint.hint}"/>
 		</p:column>
 		
-		<p:column width="10%" sortBy="#{_hint.author}">
-			<f:facet name="header">Author</f:facet>
+		<p:column headerText="Author" width="10%" sortBy="#{_hint.author}">
 			<h:outputText value="#{_hint.author}"/>
 		</p:column>
 
