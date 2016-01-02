@@ -1,2 +1,2 @@
-(cd ../TodoDataModel; git pull; mvn install)
+(cd ../TodoDataModel; git pull; mvn install clean)
 rm -r target
