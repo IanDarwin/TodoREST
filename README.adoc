@@ -1,20 +1,19 @@
-= TodoService - World's least awesome Web View and REST Service for TODO
+= TodoService - World's least awesome REST Service for TODO
 
 This will be a nice working TODO app by 2022..
 For now it provides a trivial ToDo lister/editor for one person via HTML (JSF).
 
 Uses ../TodoModel for its JPA Data; do mvn install in that project first.
 
-It will someday soon also provide a REST interface, which will be awesome enough
-that there will also be an Android Synch Service to go with it.
-
 You need to copy config-sample.properties to config.properties, and edit it.
 
-Assuming you're using Wildfly 8 or 9 and PostGres 9,, just set up the datasource and do `mvn wildfly:deploy`
+Assuming you're using Wildfly 8 or 9 and PostGreSQL 9, just set up the datasource and do `mvn wildfly:deploy`
 
-
-Things do do.
-
-Better UI!
+== Things do do.
 
 Move away from container-managed security so it can more easily become multi-user.
+
+== BUGS
+
+The only reason this is split off from TodoJSF is that Java EE doesn't allow two
+login-config elements, we need FORM for the JSF and BASIC for the REST. Sigh...
