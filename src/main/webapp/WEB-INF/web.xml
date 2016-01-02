@@ -10,37 +10,25 @@
 		<welcome-file>TodoList.web</welcome-file>
 	</welcome-file-list>
 
-	<!-- JSF Servlet -->
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.web</url-pattern>
-	</servlet-mapping>
-
 	<!-- Security roles used by this web application -->
 	<security-role>
 		<role-name>club_exec</role-name>
 	</security-role>
 
 	<login-config>
-		<auth-method>FORM</auth-method>
-		<realm-name>Todo List</realm-name>
+		<auth-method>BASIC</auth-method>
+		<realm-name>Todo List REST</realm-name>
 		<form-login-config>
-			<form-login-page>/login.jsp</form-login-page>
-			<form-error-page>/loginfailure.jsp</form-error-page>
+			<form-login-page>/restNOlogin.jsp</form-login-page>
+			<form-error-page>/restNOlogin.jsp</form-error-page>
 		</form-login-config>
 	</login-config>
 
 	<security-constraint>
-		<display-name>Todo List</display-name>
+		<display-name>Todo List REST</display-name>
 		<web-resource-collection>
-			<web-resource-name>Todo List</web-resource-name>
-			<url-pattern>*.web</url-pattern>
-			<url-pattern>*.xhtml</url-pattern>
+			<web-resource-name>Todo List REST</web-resource-name>
+			<url-pattern>/rs/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>club_exec</role-name>
