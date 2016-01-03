@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 import javax.ws.rs.Consumes;
@@ -19,8 +20,11 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.darwinsys.todo.model.Task;
 
@@ -35,6 +39,7 @@ public class TodoRsService {
 	
 	@PersistenceContext
 	EntityManager entityManager;
+	@Context HttpServletRequest request;
 	
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
@@ -52,12 +57,28 @@ public class TodoRsService {
 	static {
 		System.out.println("ToDoServer.RestService class loaded.");
 	}
+	
+	public TodoRsService() {
+		System.out.println("ToDoServer.RestService.<init>");
+	}
 
 	/** Diagnostic printing */
 	void trace(String mesg) {
 		if (trace) {
 			System.out.println(mesg);
 		}
+	}
+	
+	/**
+	 * Called from methods that access user data.
+	 * @throws WebApplicationException(403) if not authorized
+	 * @param userName The name being passed in.
+	 */
+	public void checkAuth(String userName) {
+		if (userName.equals(request.getRemoteUser())) {
+			return;
+		}
+		throw new WebApplicationException("Not Authorized - wrong user", Status.FORBIDDEN);
 	}
 	
 	@GET @Path("")
@@ -137,7 +158,7 @@ public class TodoRsService {
 	/** Used to upload a ToDo item known as a "Task"
 	 * @throws ParseException on certain invalid inputs
 	 */
-	@POST @Path("/new/tasks")
+	@POST @Path("/{userName}/task/new")
 	@Produces("text/plain")
 	@Consumes("application/json")
 	@Transactional(value=TxType.REQUIRED)
