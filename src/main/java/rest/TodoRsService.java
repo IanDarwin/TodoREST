@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -138,6 +140,7 @@ public class TodoRsService {
 	@POST @Path("/new/tasks")
 	@Produces("text/plain")
 	@Consumes("application/json")
+	@Transactional(value=TxType.REQUIRED)
 	public Response saveTask(Task task) {
 		
 		String userName = "Default";
@@ -165,7 +168,8 @@ public class TodoRsService {
 	@GET @Path("/{userName}/tasks")
 	@Produces("application/json")
 	public List<Task> findTasksForUser(@PathParam("userName")String userName) {
-		return entityManager.createQuery("from Task t").getResultList();
+		trace("Find tasks for user " + userName);
+		return entityManager.createQuery("from Task t", Task.class).getResultList();
 	}
 	
 	/** Used to download an item BY item ID */
