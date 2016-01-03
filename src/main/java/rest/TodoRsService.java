@@ -146,6 +146,7 @@ public class TodoRsService {
 		
 		try {
 			entityManager.persist(task);
+			entityManager.flush();        // before calling getId()!
 			// REST theory dictates that "create" should return the URI of the new resource:
 			return Response.created(new URI(String.format("/%s/tasks/%d", userName, task.getId()))).build();
 		} catch (URISyntaxException e) {
