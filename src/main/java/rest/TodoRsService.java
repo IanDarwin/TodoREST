@@ -162,9 +162,9 @@ public class TodoRsService {
 	@Produces("text/plain")
 	@Consumes("application/json")
 	@Transactional(value=TxType.REQUIRED)
-	public Response saveTask(Task task) {
+	public Response saveTask(Task task, @PathParam("userName") String userName) {
 		
-		String userName = "Default";
+		checkAuth(userName);
 		
 		trace("POST /" + userName + "/task");
 		
