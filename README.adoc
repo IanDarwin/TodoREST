@@ -1,9 +1,9 @@
 = TodoService - World's least awesome REST Service for TODO
 
 This will be a nice working TODO app by 2022..
-For now it provides a trivial ToDo lister/editor for one person via HTML (JSF).
+For now it provides a trivial ToDo lister/editor for one person via REST.
 
-Uses ../TodoModel for its JPA Data; do mvn install in that project first.
+Uses ../TodoDataModel for its JPA Data; do mvn install in that project first.
 
 You need to copy config-sample.properties to config.properties, and edit it.
 
