@@ -190,6 +190,7 @@ public class TodoRsService {
 	@Produces("application/json")
 	public List<Task> findTasksForUser(@PathParam("userName")String userName) {
 		trace("Find tasks for user " + userName);
+		checkAuth(userName);
 		return entityManager.createQuery("from Task t order by t.priority asc, t.name asc", Task.class).getResultList();
 	}
 	
@@ -197,7 +198,7 @@ public class TodoRsService {
 	@GET @Path("/{userName}/tasks/{itemId}")
 	public String findTaskById(@PathParam("userName")String userName,  @PathParam("itemId")long id) {
 		trace(String.format("GET tasks/item#%d", id));
-
+		checkAuth(userName);
 		Task r = entityManager.find(Task.class, id);
 		return r.toString();
 	}
