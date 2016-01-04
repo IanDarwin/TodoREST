@@ -190,7 +190,7 @@ public class TodoRsService {
 	@Produces("application/json")
 	public List<Task> findTasksForUser(@PathParam("userName")String userName) {
 		trace("Find tasks for user " + userName);
-		return entityManager.createQuery("from Task t", Task.class).getResultList();
+		return entityManager.createQuery("from Task t order by t.priority asc, t.name asc", Task.class).getResultList();
 	}
 	
 	/** Used to download an item BY item ID */
