@@ -7,7 +7,8 @@ import java.util.Random;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.darwinsys.todo.model.Hint;
 
