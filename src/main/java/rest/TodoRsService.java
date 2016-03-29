@@ -105,11 +105,10 @@ public class TodoRsService {
 		return String.format(
 				"{" +
 					"\"database_status\": \"working\", " +
-					"\"web_service_version: \"%s\", " +
+					"\"web_service_version\": \"%s\", " +
 					"\"time_on_server\": \"%s\", " +
 					"\"options/trace\": \"%s\", " +
-					"\"status\": \"running"
-					+ "\", " +
+					"\"status\": \"running" + // Comma not allowed at end in standard JSON
 				"}",
 				WEB_SERVICE_VERSION,
 				new Date(),
