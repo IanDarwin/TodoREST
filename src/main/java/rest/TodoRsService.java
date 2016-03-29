@@ -108,7 +108,7 @@ public class TodoRsService {
 					"\"web_service_version\": \"%s\", " +
 					"\"time_on_server\": \"%s\", " +
 					"\"options/trace\": \"%s\", " +
-					"\"status\": \"running" + // Comma not allowed at end in standard JSON
+					"\"status\": \"running\"" + // Comma not allowed at end in standard JSON
 				"}",
 				WEB_SERVICE_VERSION,
 				new Date(),
