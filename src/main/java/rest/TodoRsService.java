@@ -158,8 +158,8 @@ public class TodoRsService {
 	 * @throws ParseException on certain invalid inputs
 	 */
 	@POST @Path("/{userName}/task/new")
-	@Produces("text/plain")
-	@Consumes("application/json")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Transactional(value=TxType.REQUIRED)
 	public Response saveTask(Task task, @PathParam("userName") String userName) {
 		
@@ -186,7 +186,7 @@ public class TodoRsService {
 	/** Used to download all items for the given user */
 	// XXX FOR ALL USERS ATM
 	@GET @Path("/{userName}/tasks")
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Task> findTasksForUser(@PathParam("userName")String userName) {
 		trace("Find tasks for user " + userName);
 		checkAuth(userName);
@@ -195,10 +195,10 @@ public class TodoRsService {
 	
 	/** Used to download an item BY item ID */
 	@GET @Path("/{userName}/tasks/{itemId}")
-	public String findTaskById(@PathParam("userName")String userName,  @PathParam("itemId")long id) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Task findTaskById(@PathParam("userName")String userName,  @PathParam("itemId")long id) {
 		trace(String.format("GET tasks/item#%d", id));
 		checkAuth(userName);
-		Task r = entityManager.find(Task.class, id);
-		return r.toString();
+		return entityManager.find(Task.class, id);
 	}
 }
