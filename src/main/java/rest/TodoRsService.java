@@ -168,13 +168,20 @@ public class TodoRsService {
 		trace("POST /" + userName + "/task");
 		
 		try {
-			entityManager.persist(task);
-			entityManager.flush();        // before calling getId()!
-			// REST theory dictates that "create" should return the URI of the new resource:
-			return Response.created(new URI(String.format("/%s/tasks/%d", userName, task.getId()))).build();
+			if (task.getId() > 0) {
+				// Changed on the device
+				entityManager.merge(task);
+				return Response.accepted(new URI(String.format("/%s/tasks/%d", userName, task.getId()))).build();
+			} else {
+				// created on the device
+				entityManager.persist(task);
+				entityManager.flush();        // before calling getId()!
+				// REST theory dictates that "create" should return the URI of the new resource:
+				return Response.created(new URI(String.format("/%s/tasks/%d", userName, task.getId()))).build();
+			}
 		} catch (URISyntaxException e) {
 			// CANT HAPPEN
-			System.err.println("IMPOSSIBLE ERROR: " + e);
+			System.err.println("UNEXPECTED ERROR: " + e);
 			e.printStackTrace();
 			return Response.serverError().build();
 		} catch (Exception e) {
