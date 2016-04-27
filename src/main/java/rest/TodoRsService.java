@@ -154,10 +154,10 @@ public class TodoRsService {
 		return "ok; WARNING: unknown option: " + option;
 	}
 	
-	/** Used to upload a ToDo item known as a "Task"
+	/** Used to update or upload a ToDo item known as a "Task"
 	 * @throws ParseException on certain invalid inputs
 	 */
-	@POST @Path("/{userName}/task/new")
+	@POST @Path("/{userName}/task/save")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Transactional(value=TxType.REQUIRED)
