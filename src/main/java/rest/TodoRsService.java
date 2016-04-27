@@ -208,4 +208,17 @@ public class TodoRsService {
 		checkAuth(userName);
 		return entityManager.find(Task.class, id);
 	}
+	
+	/** Used (with great trepidation) by the remote to delete an entry
+	 * The input is a dummy Task, whose only used field here is serverId.
+	 */
+	@POST @Path("/{userName}/task/smersh")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Transactional(value=TxType.REQUIRED)
+	public Response smersh(Task task, @PathParam("userName") String userName) {
+		entityManager.remove(entityManager.merge(task));
+		// If we get here, it's good
+		return Response.ok().build();
+	}
 }
