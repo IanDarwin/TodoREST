@@ -148,7 +148,7 @@ public class TodoHome implements Serializable {
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void remove(Task victim) {
-		long id = victim.getId();
+		long id = victim.getServerId();
 		System.out.println("Removing Todo Task #" + id);
 		em.remove(em.merge(victim));
 	}
