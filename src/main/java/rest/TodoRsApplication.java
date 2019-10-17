@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/rs")
+@ApplicationPath("")
 public class TodoRsApplication extends Application {
 
 	public TodoRsApplication() {
