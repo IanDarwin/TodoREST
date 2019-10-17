@@ -9,19 +9,19 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /** JPA Converter for LocalDate, remove when JPA catches up with Java 8
- * @author Steven Gertiser, https://weblogs.java.net/blog/montanajava/archive/2014/06/17/using-java-8-datetime-classes-jpa
+ * @author Based on one by Steven Gertiser, https://community.oracle.com/blogs/montanajava/2014/06/16/using-java-8-datetime-classes-jpa
  */
 @Converter(autoApply = true)
 public class LocalDatePersistenceConverter
-	implements AttributeConverter<LocalDate, Timestamp> {
+	implements AttributeConverter<LocalDate, java.sql.Date> {
 	
-    @Override
-    public java.sql.Timestamp convertToDatabaseColumn(LocalDate entityValue) {
-        return Timestamp.valueOf(LocalDateTime.of(entityValue, LocalTime.of(0,0)));
+	@Override
+    public java.sql.Date convertToDatabaseColumn(LocalDate entityValue) {
+        return java.sql.Date.valueOf(entityValue);
     }
 
     @Override
-    public LocalDate convertToEntityAttribute(java.sql.Timestamp databaseValue) {
-        return databaseValue.toLocalDateTime().toLocalDate();
+    public LocalDate convertToEntityAttribute(java.sql.Date databaseValue) {
+		return (databaseValue != null) ? databaseValue.toLocalDate() : null;
     }
 }
