@@ -33,7 +33,7 @@ import com.darwinsys.todo.model.Task;
  * It uses a JPA model to access the data.
  * @author Ian Darwin
  */
-@Path("")
+@Path("/todo")
 @ApplicationScoped
 public class TodoRsService {
 	
@@ -81,7 +81,7 @@ public class TodoRsService {
 		throw new WebApplicationException("Not Authorized - wrong user", Status.FORBIDDEN);
 	}
 	
-	@GET @Path("")
+	@GET @Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	public String getDefaultPath() {
 		trace("GET RestService.getDefaultPath()");
@@ -115,28 +115,7 @@ public class TodoRsService {
 				trace 
 		);
 	}
-	
-	/** A very simple (and very bad) signup mechanism.
-	 * DO NOT USE IN PRODUCTION - insecure since the passwords is in the URL
-	 * @param userName
-	 * @param password
-	 * @return
-	 */
-	@GET @Path("/signup/{userName}/{password}")
-	@Produces("text/plain")
-	public String signin(@PathParam("userName")String userName, 
-			@PathParam("password")String password) {
-		System.out.println("RestService.signin()");
-		if (userName == null || userName.trim().length() <= 3) {
-			return "Missing or too-short username";
-		}
-		if (password == null || password.trim().length() <= 4) {
-			return "Missing or too-short password";
-		}
-		users.put(userName, password);
-		return "OK";
-	}
-	
+
 	/** Options settings - simple for now */
 	@GET @Path("/options/{option}/{value}")
 	@Produces("text/plain")
@@ -157,7 +136,7 @@ public class TodoRsService {
 	/** Used to update or upload a ToDo item known as a "Task"
 	 * @throws ParseException on certain invalid inputs
 	 */
-	@POST @Path("/{userName}/task/save")
+	@POST @Path("/{userName}/save")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Transactional(value=TxType.REQUIRED)
@@ -192,7 +171,7 @@ public class TodoRsService {
 	
 	/** Used to download all items for the given user */
 	// XXX FOR ALL USERS ATM
-	@GET @Path("/{userName}/tasks")
+	@GET @Path("/{userName}/task")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Task> findTasksForUser(@PathParam("userName")String userName) {
 		trace("Find tasks for user " + userName);
@@ -201,7 +180,7 @@ public class TodoRsService {
 	}
 	
 	/** Used to download an item BY item ID */
-	@GET @Path("/{userName}/tasks/{itemId}")
+	@GET @Path("/{userName}/task/{itemId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Task findTaskById(@PathParam("userName")String userName,  @PathParam("itemId")long id) {
 		trace(String.format("GET tasks/item#%d", id));
