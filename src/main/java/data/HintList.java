@@ -58,6 +58,7 @@ public class HintList implements Serializable {
 		return em.createQuery("select h from Hint h", Hint.class)
 			.setFirstResult(index)
 			.setMaxResults(1)
-			.getSingleResult();
+			.getResultList()
+			.get(0);
 	}
 }
