@@ -5,7 +5,7 @@
     <welcome-file>TodoList.web</welcome-file>
   </welcome-file-list>
   <security-role>
-    <role-name>club_exec</role-name>
+    <role-name>todo_user</role-name>
   </security-role>
   <login-config>
     <auth-method>BASIC</auth-method>
@@ -19,10 +19,10 @@
     <display-name>Todo List REST</display-name>
     <web-resource-collection>
       <web-resource-name>Todo List REST</web-resource-name>
-      <url-pattern>/rs/*</url-pattern>
+      <url-pattern>/todo/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-      <role-name>club_exec</role-name>
+      <role-name>todo_user</role-name>
     </auth-constraint>
   </security-constraint>
 </web-app>
