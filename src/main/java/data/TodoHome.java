@@ -135,6 +135,7 @@ public class TodoHome implements Serializable {
 	}
 
 	@PreDestroy
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public void bfn() {
 		if (!conv.isTransient()) {
 			conv.end();

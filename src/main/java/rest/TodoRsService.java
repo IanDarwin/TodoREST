@@ -3,7 +3,7 @@ package rest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,7 +111,7 @@ public class TodoRsService {
 					"\"status\": \"running\"" + // Comma not allowed at end in standard JSON
 				"}",
 				WEB_SERVICE_VERSION,
-				new Date(),
+				LocalDate.now(),
 				trace 
 		);
 	}
