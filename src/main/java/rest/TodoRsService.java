@@ -81,22 +81,6 @@ public class TodoRsService {
 		throw new WebApplicationException("Not Authorized - wrong user", Status.FORBIDDEN);
 	}
 	
-	@GET @Path("/")
-	@Produces(MediaType.TEXT_HTML)
-	public String getDefaultPath() {
-		trace("GET RestService.getDefaultPath()");
-		return getIndex();
-	}
-
-	/** Since we map "/" to this component, we have to handle trivia like /index.html here... */
-	@GET @Path("/index.html")
-	@Produces(MediaType.TEXT_HTML)
-	public String getIndex() {
-		trace("GET RestService.getIndex()");
-		return "<html><head><title>ToDo Server</title></head>" +
-			"<body><h1>Yeah.</h1><p>The server is running. That's all I can tell you.</p></body></html>";
-	}
-
 	/** This is a system-status "ping" type service */
 	@GET @Path("/status")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -187,7 +171,7 @@ public class TodoRsService {
 		checkAuth(userName);
 		return entityManager.find(Task.class, id);
 	}
-	
+
 	/** Used (with great trepidation) by the remote to delete an entry
 	 * The input is a dummy Task, whose only used field here is serverId.
 	 */
