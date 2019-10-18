@@ -5,7 +5,7 @@
     <welcome-file>TodoList.web</welcome-file>
   </welcome-file-list>
   <security-role>
-    <role-name>todo_user</role-name>
+    <role-name>todoist</role-name>
   </security-role>
   <login-config>
     <auth-method>BASIC</auth-method>
@@ -22,7 +22,7 @@
       <url-pattern>/todo/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-      <role-name>todo_user</role-name>
+      <role-name>todoist</role-name>
     </auth-constraint>
   </security-constraint>
 </web-app>

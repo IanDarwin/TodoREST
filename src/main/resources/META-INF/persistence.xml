@@ -6,7 +6,7 @@
 		http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 
 	<persistence-unit name="todolist" transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/datasources/TodoDataSource</jta-data-source>
 
 		<!-- If you add a class here add it in src/test/resources.. too! -->

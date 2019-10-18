@@ -33,7 +33,7 @@ import com.darwinsys.todo.model.Task;
  * It uses a JPA model to access the data.
  * @author Ian Darwin
  */
-@Path("/todo")
+@Path("")
 @ApplicationScoped
 public class TodoRsService {
 	
