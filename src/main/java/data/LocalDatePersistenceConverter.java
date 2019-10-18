@@ -1,9 +1,6 @@
-package com.ticketmanor.model.jpa;
+package data;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
