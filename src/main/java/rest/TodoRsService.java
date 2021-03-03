@@ -83,7 +83,7 @@ public class TodoRsService {
 	
 	/** This is a system-status "ping" type service */
 	@GET @Path("/status")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces({MediaType.APPLICATION_JSON,MediaType.TEXT_HTML})
 	public String getStatus() {
 		trace("GET RestService.getStatus()");
 		return String.format(
