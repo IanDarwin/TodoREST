@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>com.darwinsys</groupId>
 			<artifactId>darwinsys-api</artifactId>
-			<version>1.5.2-SNAPSHOT</version>
+			<version>1.5.15</version>
 			<exclusions><exclusion>
 				<groupId>javax.persistence</groupId>
 				<artifactId>persistence-api</artifactId>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>com.darwinsys</groupId>
 			<artifactId>todo-datamodel</artifactId>
-			<version>1.2.1</version>
+			<version>1.2.2</version>
 		</dependency>
 	
 		<!-- Java EE API -->
@@ -119,7 +119,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.8.jre7</version>
+			<version>42.4.1</version>
 			<scope>provided</scope>
 		</dependency>
 
