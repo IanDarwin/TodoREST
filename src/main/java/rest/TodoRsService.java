@@ -80,8 +80,8 @@ public class TodoRsService {
 			return;
 		}
 		var mesg = debug ?
-				"Not Authorized - passed %s, logged in as %s"
-						.formatted(userName,remoteUser):
+				String.format("Not Authorized - asked %s, logged in as %s",
+						userName,remoteUser):
 				"Not Authorized - wrong user";
 		throw new WebApplicationException(mesg, Status.FORBIDDEN);
 	}
