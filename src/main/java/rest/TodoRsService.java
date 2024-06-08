@@ -74,7 +74,7 @@ public class TodoRsService {
 	 * @throws WebApplicationException(403) if not authorized
 	 * @param userName The name being passed in.
 	 */
-	public void checkAuth(String userName) {
+	void checkAuth(String userName) {
 		String remoteUser = request.getRemoteUser();
 		if (userName.equals(remoteUser)) {
 			return;
