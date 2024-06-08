@@ -75,10 +75,15 @@ public class TodoRsService {
 	 * @param userName The name being passed in.
 	 */
 	public void checkAuth(String userName) {
-		if (userName.equals(request.getRemoteUser())) {
+		String remoteUser = request.getRemoteUser();
+		if (userName.equals(remoteUser)) {
 			return;
 		}
-		throw new WebApplicationException("Not Authorized - wrong user", Status.FORBIDDEN);
+		var mesg = debug ?
+				"Not Authorized - passed %s, logged in as %s"
+						.formatted(userName,remoteUser):
+				"Not Authorized - wrong user";
+		throw new WebApplicationException(mesg, Status.FORBIDDEN);
 	}
 	
 	/** This is a system-status "ping" type service */
