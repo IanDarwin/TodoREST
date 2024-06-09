@@ -11,12 +11,10 @@ Assuming you're using Wildfly and PostGreSQL, just set up the datasource and do 
 
 == Things do do.
 
-Move away from container-managed security so it can more easily become multi-user.
-In fact, so it can be used at all right now.
+Bring in signup (adding "signup code required"), maybe from cookbookweb?
 
 == BUGS
 
-The reason this originally split off from TodoJSF is that Java EE doesn't allow two
-login-config elements, we need FORM for the JSF and BASIC for the REST. Sigh...
+Originally split off from TodoJSF due to login-config issues.
 
 The reason I continue its development is, duh, mobile.

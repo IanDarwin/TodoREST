@@ -16,10 +16,10 @@
 
 		<properties>
 			<!-- Property for Provider ("JPA Driver") -->
-			<property name="javax.persistence.provider"
+			<property name="jakarta.persistence.provider"
 				value="org.hibernate.jpa.HibernatePersistenceProvider"/>
 			<!--
-			<property name="javax.persistence.provider" value="org.eclipselink.jpa.provider"/>
+			<property name="jakarta.persistence.provider" value="org.eclipselink.jpa.provider"/>
 			-->
 
 			<!-- Properties for Hibernate Dialect (brand of database) -->
@@ -28,10 +28,10 @@
 			-->
 
 			<!-- A persistent database -->
-			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql:todo" />
-			<property name="javax.persistence.jdbc.user" value="tewdew" />
-			<property name="javax.persistence.jdbc.password" value="upDoEr" />
+			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql:todo" />
+			<property name="jakarta.persistence.jdbc.user" value="tewdew" />
+			<property name="jakarta.persistence.jdbc.password" value="upDoEr" />
 
 			<!-- Properties for Hibernate provider -->
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

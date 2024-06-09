@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 import com.darwinsys.todo.model.Hint;
 import com.darwinsys.todo.model.Task;

@@ -17,6 +17,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<javase.version>21</javase.version>
+		<jakartaee.version>11.0.0-M1</jakartaee.version>
 		<maven.compiler.source>${javase.version}</maven.compiler.source>
 		<maven.compiler.target>${javase.version}</maven.compiler.target>
 		<maven.compiler.testSource>${javase.version}</maven.compiler.testSource>
@@ -44,12 +45,32 @@
 			<artifactId>todo-datamodel</artifactId>
 			<version>${datamodel.version}</version>
 		</dependency>
-	
-		<!-- Java EE API -->
+
+		<!-- JAXB deleted from Java SE 9+, needs module or this: -->
 		<dependency>
-			<groupId>javax</groupId>    
-			<artifactId>javaee-web-api</artifactId>    
-			<version>8.0.1</version>  
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.4.0-b180830.0359</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>4.0.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.istack</groupId>
+			<artifactId>istack-commons-runtime</artifactId>
+			<version>4.2.0</version>
+			<scope>test</scope>
+		</dependency>
+	
+		<!-- Jakarta EE API -->
+		<dependency>
+			<groupId>jakarta.platform</groupId>    
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>${jakartaee.version}</version>  
 			<scope>provided</scope>
 		</dependency> 
 
