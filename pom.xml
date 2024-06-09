@@ -27,6 +27,7 @@
 		<primefaces.version>5.3</primefaces.version>
 		<build.plugins.plugin.version>1.0.1</build.plugins.plugin.version>
 		<deltaspike.version>1.3.0</deltaspike.version>
+		<datamodel.version>1.2.3-SNAPSHOT</datamodel.version>
 	</properties>
 
 	<dependencies>
@@ -42,7 +43,7 @@
 		<dependency>
 			<groupId>com.darwinsys</groupId>
 			<artifactId>todo-datamodel</artifactId>
-			<version>1.2.2</version>
+			<version>${datamodel.version}</version>
 		</dependency>
 	
 		<!-- Java EE API -->
