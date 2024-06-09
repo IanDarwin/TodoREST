@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2"
+<persistence
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-		http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+		http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_2.xsd"
+	version="2.2">
 
 	<persistence-unit name="todolist" transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/TodoDataSource</jta-data-source>
@@ -13,19 +14,12 @@
 		<class>com.darwinsys.todo.model.Hint</class>
 		<class>com.darwinsys.todo.model.Project</class>
 		<class>com.darwinsys.todo.model.Task</class>
+		<!-- XXX When stable, move to datamodel -->
+		<class>todo.model.User</class>
 
 		<properties>
-			<!-- Property for Provider ("JPA Driver") -->
 			<property name="jakarta.persistence.provider"
 				value="org.hibernate.jpa.HibernatePersistenceProvider"/>
-			<!--
-			<property name="jakarta.persistence.provider" value="org.eclipselink.jpa.provider"/>
-			-->
-
-			<!-- Properties for Hibernate Dialect (brand of database) -->
-			<!--
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-			-->
 
 			<!-- A persistent database -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
@@ -34,6 +28,7 @@
 			<property name="jakarta.persistence.jdbc.password" value="upDoEr" />
 
 			<!-- Properties for Hibernate provider -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>

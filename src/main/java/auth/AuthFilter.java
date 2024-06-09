@@ -17,8 +17,7 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.darwinsys.security.DigestUtils;
-import model.Person;
-import org.postgresql.util.MD5Digest;
+import model.User;
 
 /**
  * This is the Servlet Filter for the login mechanism.
@@ -71,9 +70,9 @@ public class AuthFilter implements Filter {
 			passwdClear = ident[1];
 		System.out.printf("user is %s%n", userName);
 
-		Person p;
+		User p;
 		try {
-			TypedQuery<Person> q = em.createQuery("SELECT Person u FROM Person WHERE u.name = ?", Person.class);
+			TypedQuery<User> q = em.createQuery("SELECT User u FROM User WHERE u.name = ?", User.class);
 			q.setParameter(1, userName);
 			p = q.getSingleResult();
 		} catch (Exception e) {

@@ -25,9 +25,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<hibernate.version>6.5.2.Final</hibernate.version>
 		<hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
-		<primefaces.version>5.3</primefaces.version>
 		<build.plugins.plugin.version>1.0.1</build.plugins.plugin.version>
-		<datamodel.version>1.2.3-SNAPSHOT</datamodel.version>
+		<todo-datamodel.version>1.2.3-SNAPSHOT</todo-datamodel.version>
 	</properties>
 
 	<dependencies>
@@ -43,7 +42,7 @@
 		<dependency>
 			<groupId>com.darwinsys</groupId>
 			<artifactId>todo-datamodel</artifactId>
-			<version>${datamodel.version}</version>
+			<version>${todo-datamodel.version}</version>
 		</dependency>
 
 		<!-- JAXB deleted from Java SE 9+, needs module or this: -->
@@ -95,12 +94,14 @@
 			<version>2.2.224</version>
 			<scope>test</scope>
 		</dependency>
+<!--
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.7.3</version>
 			<scope>provided</scope>
 		</dependency>
+-->
 
 		<dependency>
 			<groupId>org.mockito</groupId>
