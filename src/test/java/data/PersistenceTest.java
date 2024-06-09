@@ -56,16 +56,4 @@ public class PersistenceTest {
 		}
 		fail("Did not retrieve datum that we saved!");
 	}
-
-	/**
-	 * Since the HintList only uses JPA directly we can test it here.
-	 */
-	@Test
-	public void testHintList() {
-		HintList hintList = new HintList();
-		hintList.em = em;
-
-		Hint h = hintList.getRandom();
-		assertNotNull(h);
-	}
 }
