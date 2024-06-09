@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>Todo Database</display-name>
-  <welcome-file-list>
-    <welcome-file>TodoList.web</welcome-file>
-  </welcome-file-list>
-  <security-role>
-    <role-name>todoist</role-name>
-  </security-role>
-  <login-config>
-    <auth-method>BASIC</auth-method>
-    <realm-name>Todo List REST</realm-name>
-    <form-login-config>
-      <form-login-page>/restNOlogin.jsp</form-login-page>
-      <form-error-page>/restNOlogin.jsp</form-error-page>
-    </form-login-config>
-  </login-config>
-  <security-constraint>
-    <display-name>Todo List REST</display-name>
-    <web-resource-collection>
-      <web-resource-name>Todo List REST</web-resource-name>
-      <url-pattern>/todo/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>todoist</role-name>
-    </auth-constraint>
-  </security-constraint>
+	<display-name>Todo Database</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<filter>
+		<filter-name>auth</filter-name>
+		<filter-class>auth.AuthFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>auth</filter-name>
+		<url-pattern>/todo/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>
