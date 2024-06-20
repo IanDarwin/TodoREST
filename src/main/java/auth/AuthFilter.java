@@ -56,8 +56,8 @@ public class AuthFilter implements Filter {
 			return;
 		}
 
-		String decoded =
-				new String(Base64.getDecoder().decode(hdrs[1]));	// S/b user:pass
+		String decoded = 	// Should be "user:pass"
+				new String(Base64.getDecoder().decode(hdrs[1]));
 
 		var ident = decoded.split(":");
 
@@ -70,24 +70,26 @@ public class AuthFilter implements Filter {
 			passwdClear = ident[1];
 		System.out.printf("user is %s%n", userName);
 
-		User p;
+		User person;
 		try {
-			TypedQuery<User> q = em.createQuery("SELECT User u FROM User WHERE u.name = ?", User.class);
+			TypedQuery<User> q =
+					em.createQuery("SELECT User u FROM User WHERE u.name = ?", User.class);
 			q.setParameter(1, userName);
-			p = q.getSingleResult();
+			person = q.getSingleResult();
 		} catch (Exception e) {
 			System.out.println("Person lookup failed: " + e);
 			response.setStatus(403);
 			return;
 		}
-		if (!p.passwdEncrypted.equals(DigestUtils.md5(passwdClear))) {
+		if (!person.passwdEncrypted.equals(DigestUtils.md5(passwdClear))) {
 			System.out.println("Invalid password");
 			response.setStatus(403);
 			return;
 		}
 
-		// User is logged in, continue processing, override getRemoteUser in request object.
-		System.out.printf("user is %s%n", userName);
+		// User is logged in, continue processing, pass logged-in user via
+		// overriding getRemoteUser with custom Request object.
+		System.out.printf("Logged-in user is %s%n", userName);
 		chain.doFilter(new AuthFilterHTTPServletRequest((HttpServletRequest) req, userName), resp);
 	}
 

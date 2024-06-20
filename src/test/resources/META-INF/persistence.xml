@@ -12,19 +12,19 @@
 		<class>com.darwinsys.todo.model.Hint</class>
 		<class>com.darwinsys.todo.model.Project</class>
 		<class>com.darwinsys.todo.model.Task</class>
+		<class>model.User</class>
 
 		<properties>
 			<!-- Property for Provider ("JPA Driver") -->
 			<property name="jakarta.persistence.provider"
+				value="org.hibernate.ejb.HibernatePersistence"/>
+<!--
 				value="org.hibernate.jpa.HibernatePersistenceProvider"/>
-			<!--
-			<property name="jakarta.persistence.provider" value="org.eclipselink.jpa.provider"/>
-			-->
+-->
 
-			<!-- Properties for Hibernate Dialect (brand of database) -->
-			<!--
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-			-->
+			<!-- Test database needs pre-populating -->
+			<property name="javax.persistence.sql-load-script-source" value="sql/import-script.sql"/>
+
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 
 			<!-- A local database, for dev/test -->

@@ -19,7 +19,10 @@
 
 		<properties>
 			<property name="jakarta.persistence.provider"
+				value="org.hibernate.ejb.HibernatePersistence"/>
+<!--
 				value="org.hibernate.jpa.HibernatePersistenceProvider"/>
+-->
 
 			<!-- A persistent database -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
