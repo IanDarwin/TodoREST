@@ -6,12 +6,7 @@ import java.util.Base64;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import jakarta.servlet.Filter;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
+import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
@@ -73,7 +68,8 @@ public class AuthFilter implements Filter {
 		User person;
 		try {
 			TypedQuery<User> q =
-					em.createQuery("SELECT User u FROM User WHERE u.name = ?", User.class);
+					em.createQuery(
+							"SELECT u FROM User u WHERE u.username = ?1", User.class);
 			q.setParameter(1, userName);
 			person = q.getSingleResult();
 		} catch (Exception e) {
@@ -93,6 +89,9 @@ public class AuthFilter implements Filter {
 		chain.doFilter(new AuthFilterHTTPServletRequest((HttpServletRequest) req, userName), resp);
 	}
 
+
+
+	@Override
 	public void destroy() {
 		System.out.println("AuthFilter.destroy()");
 	}

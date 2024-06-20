@@ -10,9 +10,8 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name="person")
-// "user' is a reserved word in at least Postgres
+// "user' is a reserved word in some SQLs, at least Postgres
 public class User {
-
 
 	long id;
 
