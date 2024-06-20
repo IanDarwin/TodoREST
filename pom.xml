@@ -43,6 +43,16 @@
 			<groupId>com.darwinsys</groupId>
 			<artifactId>todo-datamodel</artifactId>
 			<version>${todo-datamodel.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.persistence</groupId>
+					<artifactId>persistence-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-entitymanager</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- JAXB deleted from Java SE 9+, needs module or this: -->
@@ -94,14 +104,6 @@
 			<version>2.2.224</version>
 			<scope>test</scope>
 		</dependency>
-<!--
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.7.3</version>
-			<scope>provided</scope>
-		</dependency>
--->
 
 		<dependency>
 			<groupId>org.mockito</groupId>
