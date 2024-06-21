@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -24,6 +25,7 @@ import java.util.Base64;
 
 public class AuthFilterTest {
 
+    public static final String FAKE_CONTENT_TYPE = "test/test";
     static EntityManagerFactory emf;
     EntityManager em;
 
@@ -32,16 +34,23 @@ public class AuthFilterTest {
     @Mock HttpServletResponse response;
     FilterChain chain = new FilterChain() {
 
+        /** Invoked at end of AuthFilter IFF all authentication checks passed. */
         @Override
         public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse) throws IOException, ServletException {
-            System.out.println("Invoked FilterChain::doFilter");
+            System.out.println("In FilterChain::doFilter");
+            // N.B.: Prove that the login worked:
+            assertEquals(usernameGood, ((HttpServletRequest)servletRequest).getRemoteUser());
+            // These seem to have no effect:
+            servletResponse.setContentType(FAKE_CONTENT_TYPE);
+            ((HttpServletResponse)servletResponse).setStatus(200);
         }
     };
 
     AuthFilter filter;
 
     final String authMethod = "Basic";
-    final String authHeaderGood = "pearly:gates";
+    final String usernameGood = "pearly";
+    final String authHeaderGood = usernameGood + ":gates";
     final String authHeaderBad = "gurly:pates";
     final String encodedHeaderGood = authMethod + " " +
             new String(Base64.getEncoder().encode(authHeaderGood.getBytes()));
@@ -98,7 +107,7 @@ public class AuthFilterTest {
 
     // Invalid user in auth header should give 401
     @Test
-    void testBasicAuthBadCode() throws Exception {
+    void testInvalidUser() throws Exception {
 
         when(request.getHeader(AUTHENTICATION)).thenReturn(encodedHeaderBad);
         int status = -1;
@@ -109,7 +118,7 @@ public class AuthFilterTest {
         assertEquals(403, captor.getValue());
     }
 
-    // Valid user in auth header should give 200
+    // Full(?) end-to-end test.
     @Test
     void testGoodCodeShouldLogin() throws Exception {
 
@@ -117,6 +126,11 @@ public class AuthFilterTest {
         int status = -1;
 
         filter.doFilter(request, response, chain);
+        // These assertions fail, alas, because getContentType returns
+        // null, and getStatus returns 0):
+        // assertEquals(FAKE_CONTENT_TYPE, response.getContentType());
+        // assertEquals(200, response.getStatus());
+        // Instead, our mock FilterChain contains an assert() test.
         System.out.println("Looks like a win!");
     }
 }
